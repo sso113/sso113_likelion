@@ -72,7 +72,7 @@ const NameText = styled.div`
   color: #000000;
 `;
 
-const NameBox = styled.div`
+const NameBox = styled.input`
   position: relative;
   width: 210px;
   height: 35px;
@@ -107,7 +107,7 @@ const PhoneText = styled.div`
   color: #000000;
 `;
 
-const PhoneBox = styled.div`
+const PhoneBox = styled.input`
   position: absolute;
   width: 210px;
   height: 35px;
@@ -160,6 +160,23 @@ const Main = () => {
 
   const go = () => {
     navigate("/pass");
+
+    const discriminate = () => {
+      for (var i = 0; i < data.length; i++) {
+        if ((i = 1)) {
+          navigate("./pass", { state: data[i].name });
+          break;
+        } else if ((i = 0)) {
+          navigate("/fail");
+          break;
+        } else if (i !== 0 && i !== 1) {
+          alert(
+            "등록되지 않은 성함/번호입니다. \n성함과 번호를 다시 한 번 확인해주세요!"
+          );
+          break;
+        }
+      }
+    };
   };
 
   return (
@@ -185,14 +202,7 @@ const Main = () => {
           />
         </LineImageone>
         <NameText>성함</NameText>
-        <NameBox>
-          <img
-            input="text"
-            src={`${process.env.PUBLIC_URL}/images/Rectangle 5.png`}
-            alt="logo"
-            width="43px"
-          />
-        </NameBox>
+        <NameBox type="text"></NameBox>
         <LineImagetwo>
           <img
             src={`${process.env.PUBLIC_URL}/images/Line 2.png`}
@@ -201,13 +211,7 @@ const Main = () => {
           />
         </LineImagetwo>
         <PhoneText>전화번호</PhoneText>
-        <PhoneBox>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/Rectangle 5.png`}
-            alt="logo"
-            width="43px"
-          />
-        </PhoneBox>
+        <PhoneBox type="text"></PhoneBox>
         <Button onClick={go}>
           <ButtonText>입력</ButtonText>
         </Button>
